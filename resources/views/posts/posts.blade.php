@@ -70,20 +70,34 @@
                </div>
             </div>
          </div>
+         <div class="card-body">
+            <div class="dropdown">
+               <button class="btn btn-outline-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                 Categories
+               </button>
+               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                 @foreach ($categories as $category)
+                 <a class="dropdown-item" href="/categories/{{$category->slug}}">{{$category->category_name}}</a>
+                 @endforeach
+               </div>
+             </div>
+         </div>
              <div class="card">
              <div class="card-body">
                 <ul class="activity-feed">
                     @foreach ($posts as $post)
                     <li class="feed-item">
-                      <div class="feed-date">{{$post->created_at}}</div>
+                      <div class="feed-date">{{$post->created_at->diffForHumans()}}</div>
                         <span class="feed-text"><a>{{$post->poster->username}}</a>
                             <div>
                                 <p class="card-text">{{$post->intro}}</p>
                             </div>
                             <div class="tags my-3">
-                                <span class="badge bg-success">{{$post->category->category_name}}</span>
+                                <a href="/categories/{{$post->category->slug}}">
+                                 <span class="badge bg-success">{{$post->category->category_name}}</span>
+                                 </a>
                             </div>
-                                <a href="/posts/{{$post->slug}}">{{$post->title}}</a>
+                                <p>{{$post->title}}</p>
                         </span>
                         <a href="/posts/{{$post->slug}}" class="btn btn-secondary">Read More</a>
                      </li>

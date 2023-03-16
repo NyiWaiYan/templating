@@ -12,7 +12,7 @@
     </a>
     <div class="top-nav-search">
        <form>
-          <input type="text" class="form-control" placeholder="Search here">
+          <input name="search" type="text" class="form-control" placeholder="Search here" value="{{request('search')}}">
           <button class="btn" type="submit"><i class="fas fa-search"></i></button>
        </form>
     </div>
